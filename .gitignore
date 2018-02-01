@@ -99,3 +99,9 @@ ENV/
 
 # mypy
 .mypy_cache/
+.
+
+save/
+dataset/
+imagenet_test_tensorboard/
+./alexnet_weights.npy
