@@ -41,20 +41,22 @@ class AlexNet:
 
 
     def _get_weights_dict(self):
-        self._maybe_download(243861814)
+        self._maybe_download(243861814, force=True)
         return np.load(WEIGHTS_FILE, encoding='bytes').item()
     
         
     def _maybe_download(self, expected_bytes, force=False):
         dest_filename = WEIGHTS_FILE
+        
+        statinfo = os.stat(dest_filename)
+        if statinfo[6] == expected_bytes:
+            print('Found and verified', dest_filename)
+            return
+        
         if force or not os.path.exists(dest_filename):
             print('Attempting to download:', dest_filename) 
             filename, _ = urlretrieve(WEIGHTS_URL, dest_filename, reporthook=self._download_progress_hook)
             print('\nDownload Complete!')
-  
-        statinfo = os.stat(dest_filename)
-        if statinfo[6] == expected_bytes:
-            print('Found and verified', dest_filename)
         else:
             raise Exception('Failed to verify ' + dest_filename + '. Can you get to it with a browser?')
     

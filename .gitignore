@@ -102,6 +102,5 @@ ENV/
 .
 
 save/
-dataset/
 imagenet_test_tensorboard/
 ./alexnet_weights.npy
