@@ -27,7 +27,7 @@ def export_signsnet(ckpt, export_path):
     graph_def = tf.get_default_graph().as_graph_def()
     output_graph_def = graph_util.convert_variables_to_constants(sess, graph_def, ['softmax8/softmax'])
 
-    with tf.gfile.GFile('./alexnet.pb', 'wb') as f:
+    with tf.gfile.GFile(EXPORT_PATH, 'wb') as f:
         f.write(output_graph_def.SerializeToString())
 
     print('Export success ! File: {}'.format(EXPORT_PATH))
