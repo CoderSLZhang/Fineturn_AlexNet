@@ -231,7 +231,7 @@ class AlexNet:
 
     def _softmax(self, input, layer_index):
         with tf.name_scope('softmax' + str(layer_index)):
-            output = tf.nn.softmax(input)
+            output = tf.nn.softmax(input, name='softmax')
 
         return  output
 
